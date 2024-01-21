@@ -1,0 +1,79 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Hacking Simulation</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            color: #0F0;
+        }
+
+        #matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .matrix-character {
+            position: absolute;
+            animation: fall 2s linear infinite;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button onclick="startMatrixAnimation()">Rozpocznij atak hakerski</button>
+
+    <div id="matrix-container"></div>
+
+    <script>
+        function startMatrixAnimation() {
+            const matrixContainer = document.getElementById('matrix-container');
+
+            // Dodaj losowe znaki do animacji
+            for (let i = 0; i < 100; i++) {
+                const character = document.createElement('span');
+                character.className = 'matrix-character';
+                character.textContent = getRandomMatrixCharacter();
+                character.style.left = `${Math.random() * 100}vw`;
+                matrixContainer.appendChild(character);
+            }
+        }
+
+        function getRandomMatrixCharacter() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            return characters.charAt(randomIndex);
+        }
+    </script>
+</body>
+</html>
